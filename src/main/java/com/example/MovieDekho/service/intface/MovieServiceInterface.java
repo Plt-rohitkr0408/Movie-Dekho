@@ -11,6 +11,6 @@ public interface MovieServiceInterface {
     List<Movie> getAllMovies();
     List<Movie> getMovieByGenre(String genre);
     List<Movie> getMovieByTitle(String title);
-    List<Movie> getMovieByreleaseDate(LocalDate releaseDate);
+    List<Movie> getMovieByLanguage(String language);
 
 }

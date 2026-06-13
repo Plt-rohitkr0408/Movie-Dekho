@@ -18,21 +18,24 @@ public class TheaterService implements TheaterServiceInterface {
 
     @Override
     public Theater addTheater(Theater theater) {
-        return null;
+        return theaterRepository.save(theater);
     }
 
     @Override
     public List<Theater> getTheaters() {
-        return List.of();
+        return theaterRepository.findAll();
     }
 
     @Override
     public Theater getTheaterById(Long id) {
-        return null;
+        return theaterRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     @Override
     public List<Theater> getTheaterByCityId(Long cityId) {
-        return List.of();
+        return theaterRepository.findByCityId(cityId)
+                .orElseThrow(()-> new RuntimeException("Theater is not found"));
     }
+
+
 }

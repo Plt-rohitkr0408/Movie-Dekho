@@ -1,33 +1,42 @@
 package com.example.MovieDekho.service;
 
 import com.example.MovieDekho.entity.City;
+import com.example.MovieDekho.respository.CityRepository;
 import com.example.MovieDekho.service.intface.CityServiceInterface;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class CityService implements CityServiceInterface {
-    @Override
+
+    private final CityRepository cityRepository;
+
+
     public City getCityById(Long id) {
-        return null;
+        return cityRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("City not found"));
     }
 
     @Override
     public List<City> getAllCity() {
-        return List.of();
+        return cityRepository.findAll();
     }
 
     @Override
     public City getCityByName(String name) {
-        return null;
+        return cityRepository.findCityByName(name);
     }
 
     @Override
     public City addCity(City city) {
-        return null;
+        return cityRepository.save(city);
     }
 
     @Override
     public List<City> getCityByState(String state) {
-        return List.of();
+        return cityRepository.findbyState(state);
     }
 }

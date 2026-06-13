@@ -1,5 +1,6 @@
 package com.example.MovieDekho.service;
 
+import com.example.MovieDekho.dto.LoginRequest;
 import com.example.MovieDekho.entity.User;
 import com.example.MovieDekho.respository.UserRepository;
 import com.example.MovieDekho.service.intface.UserServiceInterface;
@@ -16,21 +17,31 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public User registerUser(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
-    public User loginUser(User user) {
-        return null;
+    public User loginUser(LoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
+        User user = userRepository.findByEmail(email);
+        if(user == null){
+            throw new RuntimeException("User not found");
+        }
+        if(!password.equals(user.getPassword())){
+            throw new RuntimeException("Passwords don't match");
+        }
+        return user;
     }
 
     @Override
     public List<User> getUsers() {
-        return List.of();
+        return userRepository.findAll();
     }
 
     @Override
     public User getUserById(Long userId) {
-        return null;
+        return userRepository.findById(userId).
+                orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

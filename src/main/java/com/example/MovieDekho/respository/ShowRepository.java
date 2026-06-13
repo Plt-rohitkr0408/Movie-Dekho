@@ -1,7 +1,6 @@
 package com.example.MovieDekho.respository;
 
 import com.example.MovieDekho.entity.Show;
-import com.example.MovieDekho.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
