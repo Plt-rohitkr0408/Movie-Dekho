@@ -17,6 +17,9 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public User registerUser(User user) {
+        if(userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("User already exists");
+        }
         return userRepository.save(user);
     }
 

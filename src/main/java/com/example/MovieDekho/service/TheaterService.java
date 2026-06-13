@@ -18,6 +18,16 @@ public class TheaterService implements TheaterServiceInterface {
 
     @Override
     public Theater addTheater(Theater theater) {
+
+        if(theater.getCity() == null){
+            throw new RuntimeException(
+                    "City is required");
+        }
+        Long cityId = theater.getCity().getId();
+        cityRepository.findById(cityId)
+                .orElseThrow(() ->
+                        new RuntimeException("City not found"));
+
         return theaterRepository.save(theater);
     }
 
@@ -33,8 +43,16 @@ public class TheaterService implements TheaterServiceInterface {
 
     @Override
     public List<Theater> getTheaterByCityId(Long cityId) {
-        return theaterRepository.findByCityId(cityId)
-                .orElseThrow(()-> new RuntimeException("Theater is not found"));
+
+        List<Theater> theaters =
+                theaterRepository.findByCityId(cityId);
+
+        if(theaters.isEmpty()){
+            throw new RuntimeException(
+                    "No theaters found for this city");
+        }
+
+        return theaters;
     }
 
 

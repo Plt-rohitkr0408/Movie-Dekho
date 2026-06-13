@@ -37,7 +37,7 @@ public class BookingService implements BookingServiceInterface {
         }
         List<Seat> seats = seatRepository.findAllById(request.getSeatId());
         if(seats.size() != request.getSeatId().size()){
-            throw new RuntimeException("Seats are not booked");
+            throw new RuntimeException("One or more seat is not found");
         }
 
         double ticketprice = request.getSeatId().size() * show.getTicketPrice();
@@ -85,11 +85,11 @@ public class BookingService implements BookingServiceInterface {
     @Override
     public List<Seat> getAvailableSeats(Long showId) {
         Show show = showService.getShowById(showId);
-        List<Seat> seats = seatRepository.findByScreanId(show.getScreen().getId());
+        List<Seat> seats = seatRepository.findByScreenId(show.getScreen().getId());
         List<Long> bookedSeat = bookingRepository.findBookedSeatsIdByShowId(showId);
 
         return seats.stream()
-                .filter(seat -> bookedSeat.contains(seat.getId()))
+                .filter(seat -> ! bookedSeat.contains(seat.getId()))
                 .toList();
     }
 }

@@ -15,7 +15,7 @@ public class CityController {
 
     private final CityService cityService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<City> getCityById(@PathVariable Long id) {
         return  ResponseEntity.ok(cityService.getCityById(id));
     }
@@ -25,17 +25,17 @@ public class CityController {
         return ResponseEntity.ok(cityService.getAllCity())  ;
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/city/{name}")
     public ResponseEntity<City> getCityByName(@PathVariable String name) {
         return ResponseEntity.ok(cityService.getCityByName(name));
     }
 
-    @PostMapping("/city")
+    @PostMapping("/city/search")
     public ResponseEntity<City> addCity(@RequestBody City city) {
         return ResponseEntity.ok(cityService.addCity(city));
     }
 
-    @GetMapping("/state")
+    @GetMapping("/state/search")
     public ResponseEntity<List<City>> getCityByState(@RequestParam String state) {
         return ResponseEntity.ok(cityService.getCityByState(state));
     }

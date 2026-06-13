@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/api/register")
+    @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user){
         return ResponseEntity.ok(userService.registerUser(user));
     }

@@ -25,13 +25,13 @@ public class ScreenController {
         return ResponseEntity.ok(screenService.addScreen(screen));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Screen> getScreenById(@PathVariable Long id){
         return ResponseEntity.ok(screenService.getScreenById(id));
     }
 
     @GetMapping("/theater/{id}")
-    public ResponseEntity<List<Screen>> getScreenByTheaterId(Long id){
+    public ResponseEntity<List<Screen>> getScreenByTheaterId( @PathVariable Long id){
         return ResponseEntity.ok(screenService.getScreensByTheaterId(id));
     }
 

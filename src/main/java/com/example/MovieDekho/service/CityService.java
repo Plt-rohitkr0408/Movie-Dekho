@@ -26,8 +26,11 @@ public class CityService implements CityServiceInterface {
     }
 
     @Override
-    public City getCityByName(String name) {
-        return cityRepository.findCityByName(name);
+    public City getCityByName(String cityName) {
+
+        return cityRepository.findByCityName(cityName)
+                .orElseThrow(() ->
+                        new RuntimeException("City not found"));
     }
 
     @Override
@@ -37,6 +40,15 @@ public class CityService implements CityServiceInterface {
 
     @Override
     public List<City> getCityByState(String state) {
-        return cityRepository.findbyState(state);
+
+        List<City> cities =
+                cityRepository.findByState(state);
+
+        if(cities.isEmpty()){
+            throw new RuntimeException(
+                    "No cities found");
+        }
+
+        return cities;
     }
 }

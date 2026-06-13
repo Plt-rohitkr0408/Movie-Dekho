@@ -14,9 +14,17 @@ import java.util.List;
 public class SeatService implements SeatsServiceInterface {
 
     private final SeatRepository seatRepository;
+    private final ScreenRepository screenRepository;
 
     @Override
     public Seat addSeat(Seat seat) {
+
+        Long screenId = seat.getScreen().getId();
+
+        screenRepository.findById(screenId)
+                .orElseThrow(() ->
+                        new RuntimeException("Screen not found"));
+
         return seatRepository.save(seat);
     }
 
@@ -33,6 +41,6 @@ public class SeatService implements SeatsServiceInterface {
 
     @Override
     public List<Seat> getSeatByScreenId(Long screenId) {
-        return seatRepository.findByScreanId(screenId);
+        return seatRepository.findByScreenId(screenId);
     }
 }

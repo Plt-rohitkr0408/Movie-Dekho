@@ -24,14 +24,14 @@ public class SeatController {
         return ResponseEntity.ok(seatService.getSeat());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Seat> getSeatById(@PathVariable Long id){
-        return ResponseEntity.ok(seatService.getSeatById(id));
+    @GetMapping("/{screenId}")
+    public ResponseEntity<Seat> getSeatById(@PathVariable Long screenId){
+        return ResponseEntity.ok(seatService.getSeatById(screenId));
     }
 
-    @GetMapping("/Screen/{id}")
-    public ResponseEntity<List<Seat>> getSeatByScreenId(@PathVariable Long id){
-        return ResponseEntity.ok(seatService.getSeatByScreenId(id));
+    @GetMapping("/Screen/{screenId}")
+    public ResponseEntity<List<Seat>> getSeatByScreenId(@PathVariable Long screenId){
+        return ResponseEntity.ok(seatService.getSeatByScreenId(screenId));
     }
 
 }

@@ -32,17 +32,16 @@ public class ShowController {
         return ResponseEntity.ok(showService.getAllShow());
     }
 
-    @GetMapping("/screen/{id}")
+    @GetMapping("/screen/{screenId}")
     public ResponseEntity<List<Show>> getShowByScreenId( @PathVariable Long screenId){
         return ResponseEntity.ok(showService.getShowByScreenId(screenId));
     }
 
-    @GetMapping("/movie/{id}")
+    @GetMapping("/movie/{movieId}")
     public ResponseEntity<List<Show>> getShowByMovieId(@PathVariable Long movieId){
         return ResponseEntity.ok(showService.getShowByMovieId(movieId));
     }
-
-    @PostMapping("/movie/{movieId}/search")
+    @GetMapping("/movie/{movieId}/search")
     public ResponseEntity<List<Show>> getShowByMovieAndDate( @PathVariable Long movieId,
                            @RequestParam @DateTimeFormat(iso= DateTimeFormat.ISO.DATE) LocalDate showDate){
         return ResponseEntity.ok(showService.getShowByMovieAndDate(movieId,showDate));
