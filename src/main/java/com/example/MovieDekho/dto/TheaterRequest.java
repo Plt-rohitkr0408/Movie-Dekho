@@ -12,5 +12,5 @@ import lombok.Setter;
 public class TheaterRequest {
     private String theaterName;
     private String address;
-    private City city;
+    private Long cityId;
 }

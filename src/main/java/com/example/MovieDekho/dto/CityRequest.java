@@ -9,6 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CityRequest {
-    private String city;
+    private String cityName;
     private String state;
 }

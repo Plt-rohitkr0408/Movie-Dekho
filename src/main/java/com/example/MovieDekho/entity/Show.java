@@ -19,12 +19,12 @@ public class Show {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 
-    @ManyToOne
-    @JoinColumn(name="screen_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="screen_id", nullable = false)
     private Screen screen;
 
     @Column(nullable = false)
@@ -33,7 +33,7 @@ public class Show {
     @Column(nullable = false)
     private LocalTime startTime;
 
-    private LocalTime endTime ;
+    private LocalTime endTime = startTime.plusMinutes(movie.getDurationMinutes()) ;
 
     private Double ticketPrice;
 

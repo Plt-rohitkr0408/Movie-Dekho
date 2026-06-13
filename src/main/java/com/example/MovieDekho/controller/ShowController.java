@@ -4,9 +4,11 @@ import com.example.MovieDekho.entity.Show;
 import com.example.MovieDekho.service.ShowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,9 +32,20 @@ public class ShowController {
         return ResponseEntity.ok(showService.getAllShow());
     }
 
+    @GetMapping("/screen/{id}")
+    public ResponseEntity<List<Show>> getShowByScreenId( @PathVariable Long screenId){
+        return ResponseEntity.ok(showService.getShowByScreenId(screenId));
+    }
 
+    @GetMapping("/movie/{id}")
+    public ResponseEntity<List<Show>> getShowByMovieId(@PathVariable Long movieId){
+        return ResponseEntity.ok(showService.getShowByMovieId(movieId));
+    }
 
-
-
+    @PostMapping("/movie/{movieId}/search")
+    public ResponseEntity<List<Show>> getShowByMovieAndDate( @PathVariable Long movieId,
+                           @RequestParam @DateTimeFormat(iso= DateTimeFormat.ISO.DATE) LocalDate showDate){
+        return ResponseEntity.ok(showService.getShowByMovieAndDate(movieId,showDate));
+    }
 
 }

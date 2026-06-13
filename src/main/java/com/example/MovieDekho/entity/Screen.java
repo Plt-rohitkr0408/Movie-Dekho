@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name ="shows")
+@Table(name ="screens")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -17,12 +17,13 @@ public class Screen {
     private Long id;
 
     @Column(nullable = false)
-    private String title;
+    private String screenNumber;
 
+    @Column(nullable = false)
     private Integer totalSeats;
 
-    @ManyToOne
-    @JoinColumn(name="theater_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="theater_id" , nullable = false)
     private Theater theater;
 
 }

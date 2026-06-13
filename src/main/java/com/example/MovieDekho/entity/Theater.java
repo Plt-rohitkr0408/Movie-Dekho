@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="Threaters")
+@Table(name="theaters")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -18,7 +18,7 @@ public class Theater {
     @Column(nullable = false)
     private String name;
 
-    private String description;
+    private String address;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="city_id", nullable = false)

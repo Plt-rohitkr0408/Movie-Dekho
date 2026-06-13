@@ -17,11 +17,11 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="show_id", nullable = false)
     private Show show;
 
@@ -39,6 +39,7 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private BokkingType status;
 
+    @PrePersist
     protected void createBooking(){
         this.bookingDate = LocalDateTime.now();
         if(this.status == null){

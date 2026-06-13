@@ -16,5 +16,4 @@ public class ShowRequest {
     private LocalDate showDate;
     private LocalTime startTime;
     private LocalTime endTime;
-    private Double ticketPrice;
 }

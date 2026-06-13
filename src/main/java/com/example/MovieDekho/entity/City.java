@@ -3,6 +3,8 @@ package com.example.MovieDekho.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table( name ="Cities")
 @Getter
@@ -20,5 +22,7 @@ public class City {
     @Column(name="state")
     private String state;
 
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Theater> theaters;
 
 }

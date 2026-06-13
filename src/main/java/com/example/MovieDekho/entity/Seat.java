@@ -1,10 +1,16 @@
 package com.example.MovieDekho.entity;
 
+import com.example.MovieDekho.enums.SeatType;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="seats")
+@Table(name="seats",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        columnNames = {"screen_id", "seat_row", "seat_col"}
+                )
+        })
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,8 +21,7 @@ public class Seat {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String seatNumber;
+
 
     @Column(nullable = false , name="seat_col")
     private Integer col;
@@ -24,11 +29,15 @@ public class Seat {
     @Column(nullable = false, name="seat_row")
     private String row;
 
-    @Enumerated(EnumType.STRING)
-    private String seatType;
+    @Column(nullable = false)
+    private String seatNumber ;
 
-    @ManyToOne
-    @JoinColumn(name="screen_id")
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private SeatType seatType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "screen_id", nullable = false)
     private Screen screen;
 
 }

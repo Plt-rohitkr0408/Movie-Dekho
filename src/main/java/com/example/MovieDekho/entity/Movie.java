@@ -31,8 +31,10 @@ public class Movie {
     @Column(nullable = false)
     private Double rating;
 
+    @Column(nullable = false)
     private Integer durationMinutes;
+    @Column(nullable = false)
     private LocalDate releaseDate;
-    private String postUrl;
+    private String posterUrl;
 
 }
